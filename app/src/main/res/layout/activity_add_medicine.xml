@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
             android:gravity="right"
-            android:text="8:00 AM" />
+            android:text="9:00 AM" />
     </LinearLayout>
 
     <Button
@@ -56,5 +56,17 @@
         android:layout_marginRight="30dp"
         android:background="@color/colorPrimary"
         android:text="Add"
+        android:textColor="@color/colorWhite" />
+
+    <Button
+        android:id="@+id/btn_import_file"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_add"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@color/colorPrimary"
+        android:text="Import File"
         android:textColor="@color/colorWhite" />
 </RelativeLayout>

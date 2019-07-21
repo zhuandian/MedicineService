@@ -20,7 +20,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 "date varchar(20)," +
                 "time varchar(20)," +
                 "title varchar(20)," +
-                "content varchar(20))");
+                "count varchar(20))");
         //添加一条测试数据
         db.execSQL("insert into medicine values(null,?,?,?,?)"
                 ,new Object[]{"2019.7.21","8:00","标题","内容"});
