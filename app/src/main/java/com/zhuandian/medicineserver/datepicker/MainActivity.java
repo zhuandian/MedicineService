@@ -6,7 +6,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -21,10 +20,13 @@ import com.zhuandian.medicineserver.datepicker.calendar.views.MonthView;
 import com.zhuandian.medicineserver.datepicker.calendar.views.WeekView;
 import com.zhuandian.medicineserver.datepicker.view.MyListView;
 import com.zhuandian.medicineserver.db.DBHelper;
+import com.zhuandian.medicineserver.entity.DbEntity;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements MonthView.OnDateChangeListener, MonthView.OnDatePickedListener {
 
@@ -43,6 +45,10 @@ public class MainActivity extends AppCompatActivity implements MonthView.OnDateC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_datapicker);
+        //创建数据
+        helper = new DBHelper(this);
+        //调用数据操作对象
+        dbWrite = helper.getWritableDatabase();
         now = Calendar.getInstance();
 
         monthView = (MonthView) findViewById(R.id.month_calendar);
@@ -72,29 +78,42 @@ public class MainActivity extends AppCompatActivity implements MonthView.OnDateC
         weekView.setFestivalDisplay(true);
         weekView.setTodayDisplay(true);
         weekView.setOnDatePickedListener(this);
-
-        initData();
+        String today = now.get(Calendar.YEAR) + "." + (now.get(Calendar.MONTH) + 1) + "." + (now.get(Calendar.DATE));
+        initData(today);
 
 
     }
 
-    private void initData() {
-        //创建数据
-        helper = new DBHelper(this);
-        //调用数据操作对象
-        dbWrite = helper.getWritableDatabase();
+    private void initData(String dateStr) {
+        List<DbEntity> dbEntityList = new ArrayList<>();
 
-        Cursor cursor = dbWrite.query(DBHelper.name, new String[]{"time"}, null, null, null, null, null);
+
+        Cursor cursor = dbWrite.query(DBHelper.name, null, null, null, null, null, null);
         while (cursor.moveToNext()) {
-            String title = cursor.getString(cursor.getColumnIndex("time"));
-            System.out.println(title + "----------------------------");
+            String date = cursor.getString(cursor.getColumnIndex("date"));
+            String count = cursor.getString(cursor.getColumnIndex("count"));
+            String title = cursor.getString(cursor.getColumnIndex("title"));
+            String time = cursor.getString(cursor.getColumnIndex("time"));
+            if (date.contains(dateStr)){
+                DbEntity dbEntity = new DbEntity();
+                dbEntity.setCount(count);
+                dbEntity.setDate(date);
+                dbEntity.setTime(time);
+                dbEntity.setTitle(title);
+                dbEntityList.add(dbEntity);
+            }
         }
 
-        cursor.close();
-//        for (int i = 0; i < 20; i++) {
-//            MyListView cia = new MyListView(this);
-//            contentLayout.addView(cia);
-//        }
+        if (dbEntityList.size()>0){
+            llAddContainer.setVisibility(View.GONE);
+                MyListView child = new MyListView(this);
+//                child.setDbEntityList(dbEntityList);
+                child.initView(dbEntityList);
+                contentLayout.addView(child);
+
+        }else {
+            llAddContainer.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -117,23 +136,20 @@ public class MainActivity extends AppCompatActivity implements MonthView.OnDateC
                 weekTxt.setVisibility(View.VISIBLE);
             }
             contentLayout.removeAllViews();
-//            for (int i = 0; i < 2; i++) {
-//                MyListView cia = new MyListView(this);
-//                contentLayout.addView(cia);
-//            }
             dateStr = "" + date;
-            Cursor cursor = dbWrite.query(DBHelper.name, new String[]{"date"}, null, null, null, null, null);
-            while (cursor.moveToNext()) {
-                String dateStr = cursor.getString(cursor.getColumnIndex("date"));
-                if (dateStr.contains("" + date)) {
-                    llAddContainer.setVisibility(View.GONE);
-                    contentLayout.addView(new MyListView(this));
-                } else {
-                    llAddContainer.setVisibility(View.VISIBLE);
-                }
-                System.out.println(dateStr + "----------------------------");
-            }
-            cursor.close();
+//            Cursor cursor = dbWrite.query(DBHelper.name, new String[]{"date"}, null, null, null, null, null);
+//            while (cursor.moveToNext()) {
+//                String dateStr = cursor.getString(cursor.getColumnIndex("date"));
+//                if (dateStr.contains("" + date)) {
+//                    llAddContainer.setVisibility(View.GONE);
+//                    contentLayout.addView(new MyListView(this));
+//                } else {
+//                    llAddContainer.setVisibility(View.VISIBLE);
+//                }
+//                System.out.println(dateStr + "----------------------------");
+//            }
+//            cursor.close();
+            initData(dateStr);
             Toast.makeText(this, "" + date, Toast.LENGTH_LONG).show();
         } catch (Exception e) {
             e.printStackTrace();

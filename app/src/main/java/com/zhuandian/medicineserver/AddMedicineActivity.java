@@ -53,16 +53,16 @@ public class AddMedicineActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 switch (which) {
                                     case 0:
-                                        tvTime.setText("9:00 AM - 11:00 AM");
-                                        time = "9:00";
+                                        tvTime.setText("9:00AM-11:00AM");
+                                        time = "9:00AM-11:00AM";
                                         break;
                                     case 1:
-                                        tvTime.setText("11:00 AM - 1:00 PM");
-                                        time = "11:00";
+                                        tvTime.setText("11:00AM-1:00PM");
+                                        time = "11:00AM-1:00PM";
                                         break;
                                     case 2:
-                                        tvTime.setText("1:00 PM OR Later");
-                                        time = "13:00";
+                                        tvTime.setText("1:00PM OR Later");
+                                        time = "1:00PM OR Later";
                                         break;
                                 }
                                 dialog.cancel();

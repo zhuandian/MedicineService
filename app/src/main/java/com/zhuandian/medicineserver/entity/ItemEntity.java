@@ -33,7 +33,7 @@ public class ItemEntity {
         this.subItem = subItem;
     }
 
-    private static class SubItem {
+    public static class SubItem {
         private String title;
         private String content;
 
