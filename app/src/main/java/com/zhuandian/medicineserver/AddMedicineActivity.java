@@ -164,9 +164,10 @@ public class AddMedicineActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             formatJson(content);
-        }else {
+        } else {
             new AlertDialog.Builder(AddMedicineActivity.this)
-                    .setTitle("Make sure there is a file config.tex in the root directory！")
+                    .setTitle("Fail !！")
+                    .setMessage("Make sure there is a file config.tex in the root directory")
                     .create()
                     .show();
         }
@@ -186,6 +187,7 @@ public class AddMedicineActivity extends AppCompatActivity {
 
         new AlertDialog.Builder(AddMedicineActivity.this)
                 .setTitle("Import file success ！")
+                .setMessage("Import file success ")
                 .create()
                 .show();
     }

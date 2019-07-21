@@ -1,9 +1,11 @@
 package com.zhuandian.medicineserver.datepicker.view;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.zhuandian.medicineserver.R;
 import com.zhuandian.medicineserver.entity.DbEntity;
@@ -19,6 +21,9 @@ public class MyListView extends LinearLayout {
     private final LinearLayout itemContainer3;
     private final LinearLayout itemContainer2;
     private final LinearLayout itemContainer1;
+    private final TextView tvIndex1;
+    private final TextView tvIndex2;
+    private final TextView tvIndex3;
     private View view;
     private Context context;
 
@@ -38,9 +43,13 @@ public class MyListView extends LinearLayout {
         itemContainer1 = view.findViewById(R.id.ll_item_container_1);
         itemContainer2 = view.findViewById(R.id.ll_item_container_2);
         itemContainer3 = view.findViewById(R.id.ll_item_container_3);
+        tvIndex1 = view.findViewById(R.id.tv_index_1);
+        tvIndex2 = view.findViewById(R.id.tv_index_2);
+        tvIndex3 = view.findViewById(R.id.tv_index_3);
         addView(view);
     }
 
+    @SuppressLint("ResourceAsColor")
     public void initView(List<DbEntity> dbEntityList) {
 
         List<ItemEntity.SubItem> subItemList1 = new ArrayList<>();
@@ -67,6 +76,12 @@ public class MyListView extends LinearLayout {
             }
         }
 
+
+        tvIndex1.setBackgroundColor(getResources().getColor(subItemList1.size() > 0 ? R.color.colorAccent : R.color.colorPrimary));
+        tvIndex2.setBackgroundColor(getResources().getColor(subItemList2.size() > 0 ? R.color.colorAccent : R.color.colorPrimary));
+        tvIndex3.setBackgroundColor(getResources().getColor(subItemList3.size() > 0 ? R.color.colorAccent : R.color.colorPrimary));
+
+
         for (ItemEntity.SubItem subItem : subItemList1) {
             ContentItemViewAbs child = new ContentItemViewAbs(context);
             child.initView(subItem);
@@ -82,7 +97,7 @@ public class MyListView extends LinearLayout {
         for (ItemEntity.SubItem subItem : subItemList3) {
             ContentItemViewAbs child = new ContentItemViewAbs(context);
             child.initView(subItem);
-            itemContainer2.addView(child);
+            itemContainer3.addView(child);
         }
 
 
