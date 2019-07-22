@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements MonthView.OnDateC
             String count = cursor.getString(cursor.getColumnIndex("count"));
             String title = cursor.getString(cursor.getColumnIndex("title"));
             String time = cursor.getString(cursor.getColumnIndex("time"));
-            if (date.contains(dateStr)) {
+            if (date != null && date.contains(dateStr)) {
                 DbEntity dbEntity = new DbEntity();
                 dbEntity.setCount(count);
                 dbEntity.setDate(date);
