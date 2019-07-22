@@ -32,11 +32,11 @@ public final class DPCManager {
     private DPCManager() {
         // 默认显示为中文日历
         String locale = Locale.getDefault().getCountry().toLowerCase();
-        if (locale.equals("cn")) {
-            initCalendar(new DPCNCalendar());
-        } else {
+//        if (locale.equals("cn")) {
+//            initCalendar(new DPCNCalendar());
+//        } else {
             initCalendar(new DPUSCalendar());
-        }
+//        }
     }
 
     /**
