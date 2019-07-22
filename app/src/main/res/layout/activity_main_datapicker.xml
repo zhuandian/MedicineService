@@ -1,79 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorWhite"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <include layout="@layout/top_week_title" />
-
-    <com.zhuandian.medicineserver.datepicker.ScrollLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/main_layout"
+        <include layout="@layout/top_week_title" />
+
+        <com.zhuandian.medicineserver.datepicker.ScrollLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-            <com.zhuandian.medicineserver.datepicker.calendar.views.MonthView
-                android:id="@+id/month_calendar"
+            <LinearLayout
+                android:id="@+id/main_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.zhuandian.medicineserver.datepicker.calendar.views.MonthView
+                    android:id="@+id/month_calendar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
 
-            <com.zhuandian.medicineserver.datepicker.view.MyTextView
-                android:id="@+id/week_text"
-                android:layout_width="70dp"
-                android:layout_height="18dp"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center_horizontal|center_vertical"
-                android:textColor="@android:color/white"
-                android:textSize="12sp"
+                <com.zhuandian.medicineserver.datepicker.view.MyTextView
+                    android:id="@+id/week_text"
+                    android:layout_width="70dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    android:visibility="invisible" />
+
+
+                <LinearLayout
+                    android:id="@+id/content_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <com.zhuandian.medicineserver.datepicker.calendar.views.WeekView
+                android:id="@+id/week_calendar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:visibility="invisible" />
 
-            <LinearLayout
-                android:id="@+id/ll_add_container"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="No reminder today, click the button to add"
-                    android:textColor="#999"
-                    android:textSize="18sp" />
-
-                <Button
-                    android:id="@+id/btn_add"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="30dp"
-                    android:background="@color/colorPrimary"
-                    android:text="Add"
-                    android:textColor="@color/colorWhite" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/content_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <com.zhuandian.medicineserver.datepicker.calendar.views.WeekView
-            android:id="@+id/week_calendar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="invisible" />
-
-    </com.zhuandian.medicineserver.datepicker.ScrollLayout>
+        </com.zhuandian.medicineserver.datepicker.ScrollLayout>
 
 
-</LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_add_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="30dp"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/btn_add"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/btn_bg"
+            android:gravity="center"
+            android:text="Add"
+            android:textColor="@color/colorWhite" />
+    </LinearLayout>
+
+</RelativeLayout>

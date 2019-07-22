@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements MonthView.OnDateC
     private TextView weekTxt;
     private Calendar now;
     private LinearLayout llAddContainer;
-    private Button btnAdd;
+    private TextView btnAdd;
     private SQLiteDatabase dbWrite;
     private DBHelper helper;
     private String dateStr;
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements MonthView.OnDateC
         contentLayout = (LinearLayout) findViewById(R.id.content_layout);
         weekTxt = (TextView) findViewById(R.id.week_text);
         llAddContainer = (LinearLayout) findViewById(R.id.ll_add_container);
-        btnAdd = (Button) findViewById(R.id.btn_add);
+        btnAdd = (TextView) findViewById(R.id.btn_add);
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements MonthView.OnDateC
             String count = cursor.getString(cursor.getColumnIndex("count"));
             String title = cursor.getString(cursor.getColumnIndex("title"));
             String time = cursor.getString(cursor.getColumnIndex("time"));
-            if (date.contains(dateStr)){
+            if (date.contains(dateStr)) {
                 DbEntity dbEntity = new DbEntity();
                 dbEntity.setCount(count);
                 dbEntity.setDate(date);
@@ -109,15 +109,12 @@ public class MainActivity extends AppCompatActivity implements MonthView.OnDateC
             }
         }
 
-        if (dbEntityList.size()>0){
-            llAddContainer.setVisibility(View.GONE);
-                MyListView child = new MyListView(this);
+        if (dbEntityList.size() > 0) {
+            MyListView child = new MyListView(this);
 //                child.setDbEntityList(dbEntityList);
-                child.initView(dbEntityList);
-                contentLayout.addView(child);
+            child.initView(dbEntityList);
+            contentLayout.addView(child);
 
-        }else {
-            llAddContainer.setVisibility(View.VISIBLE);
         }
     }
 
