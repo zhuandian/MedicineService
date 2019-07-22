@@ -22,14 +22,14 @@ public class DBHelper extends SQLiteOpenHelper {
                 "title varchar(20)," +
                 "count varchar(20))");
         //添加一条测试数据
-        db.execSQL("insert into medicine values(null,?,?,?,?)"
-                ,new Object[]{"2019.7.21","9","标题","2"});
-
-        db.execSQL("insert into medicine values(null,?,?,?,?)"
-                ,new Object[]{"2019.7.22","12","标题","2"});
-
-        db.execSQL("insert into medicine values(null,?,?,?,?)"
-                ,new Object[]{"2019.7.24","13","标题","2"});
+//        db.execSQL("insert into medicine values(null,?,?,?,?)"
+//                ,new Object[]{"2019.7.21","9","标题","2"});
+//
+//        db.execSQL("insert into medicine values(null,?,?,?,?)"
+//                ,new Object[]{"2019.7.22","12","标题","2"});
+//
+//        db.execSQL("insert into medicine values(null,?,?,?,?)"
+//                ,new Object[]{"2019.7.24","13","标题","2"});
     }
 
 

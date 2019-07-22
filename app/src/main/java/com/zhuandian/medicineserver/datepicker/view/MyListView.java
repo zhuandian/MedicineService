@@ -61,7 +61,7 @@ public class MyListView extends LinearLayout {
         for (DbEntity dbEntity : dbEntityList) {
 
             AlarmManagerUtil.setAlarm(context, 0, Integer.parseInt(dbEntity.getTime()),
-                    00, 0, 0, "Medication time", 2);
+                    00, (int)(1+Math.random()*(10000-1+1)), 0, "Medication time", 2);
 
             if (Integer.parseInt(dbEntity.getTime()) < 11) {
                 ItemEntity.SubItem subItem = new ItemEntity.SubItem();

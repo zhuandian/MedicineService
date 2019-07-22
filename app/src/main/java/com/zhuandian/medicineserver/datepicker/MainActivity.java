@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 
 import com.zhuandian.medicineserver.AddMedicineActivity;
+import com.zhuandian.medicineserver.AlarmActivity;
 import com.zhuandian.medicineserver.R;
 import com.zhuandian.medicineserver.clock.AlarmManagerUtil;
 import com.zhuandian.medicineserver.datepicker.calendar.cons.DPMode;
@@ -22,7 +23,6 @@ import com.zhuandian.medicineserver.datepicker.calendar.views.WeekView;
 import com.zhuandian.medicineserver.datepicker.view.MyListView;
 import com.zhuandian.medicineserver.db.DBHelper;
 import com.zhuandian.medicineserver.entity.DbEntity;
-import com.zhuandian.medicineserver.service.LongRunningService;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -49,6 +49,10 @@ public class MainActivity extends AppCompatActivity implements MonthView.OnDateC
         setContentView(R.layout.activity_main_datapicker);
 //        Intent intent = new Intent(this, LongRunningService.class);
 //        startService(intent);
+
+        //测试闹钟用
+//        AlarmManagerUtil.setAlarm(this, 0, 11,
+//                17,(int)(1+Math.random()*(1000-1+1))  , 0, "Medication time", 2);
 
         //创建数据
         helper = new DBHelper(this);

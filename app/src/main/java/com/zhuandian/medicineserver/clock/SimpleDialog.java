@@ -20,11 +20,9 @@ public class SimpleDialog extends Dialog {
     protected static int default_height = WindowManager.LayoutParams.WRAP_CONTENT;// 默认高度
     public static int TYPE_TWO_BT = 2;
     public static int TYPE_NO_BT = 0;
-    private final Button bt_take;
-    private final Button bt_skip;
     public TextView dialog_title;
     public EditText dialog_message;
-    public Button bt_cancel, bt_reschedule;
+    public Button bt_skip, bt_reschedule,bt_take;
     private LinearLayout ll_button;
     protected Context mContext;
     private View.OnClickListener listener;

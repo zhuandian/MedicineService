@@ -2,12 +2,14 @@ package com.zhuandian.medicineserver.clock;
 
 import android.app.Activity;
 import android.app.Service;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.view.View;
 import android.widget.Toast;
 
+import com.zhuandian.medicineserver.AlarmActivity;
 import com.zhuandian.medicineserver.R;
 
 
@@ -44,7 +46,7 @@ public class ClockAlarmActivity extends Activity {
         dialog.setRescheduleClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (dialog.bt_reschedule == v || dialog.bt_cancel == v) {
+                if (dialog.bt_reschedule == v || dialog.bt_skip == v|| dialog.bt_take == v) {
                     if (flag == 1 || flag == 2) {
                         mediaPlayer.stop();
                         mediaPlayer.release();
@@ -52,7 +54,7 @@ public class ClockAlarmActivity extends Activity {
                     if (flag == 0 || flag == 2) {
                         vibrator.cancel();
                     }
-                    Toast.makeText(ClockAlarmActivity.this, "Reminder in an hour", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(ClockAlarmActivity.this, AlarmActivity.class));
                     dialog.dismiss();
                     finish();
                 }
@@ -60,7 +62,7 @@ public class ClockAlarmActivity extends Activity {
         }).setSkipClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (dialog.bt_reschedule == v || dialog.bt_cancel == v) {
+                if (dialog.bt_reschedule == v || dialog.bt_skip == v|| dialog.bt_take == v) {
                     if (flag == 1 || flag == 2) {
                         mediaPlayer.stop();
                         mediaPlayer.release();
@@ -75,7 +77,7 @@ public class ClockAlarmActivity extends Activity {
         }).setTakeClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (dialog.bt_reschedule == v || dialog.bt_cancel == v) {
+                if (dialog.bt_reschedule == v || dialog.bt_skip == v|| dialog.bt_take == v) {
                     if (flag == 1 || flag == 2) {
                         mediaPlayer.stop();
                         mediaPlayer.release();
