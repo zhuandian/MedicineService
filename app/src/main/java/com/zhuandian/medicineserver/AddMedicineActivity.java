@@ -54,6 +54,10 @@ public class AddMedicineActivity extends AppCompatActivity {
         //调用数据操作对象
         dbWrite = helper.getWritableDatabase();
 
+        final String[] timeArray = new String[24];
+        for (int i = 0; i < 24; i++) {
+            timeArray[i]= i+"";
+        }
         name = (EditText) findViewById(R.id.et_name);
         count = (EditText) findViewById(R.id.et_count);
         btnAdd = (Button) findViewById(R.id.btn_add);
@@ -64,23 +68,11 @@ public class AddMedicineActivity extends AppCompatActivity {
             public void onClick(View v) {
                 new AlertDialog.Builder(AddMedicineActivity.this)
                         .setTitle("Select Time")
-                        .setSingleChoiceItems(new String[]{"9:00 AM - 11:00 AM", "11:00 AM - 1:00 PM", "1:00 PM OR Later"}, 0, new DialogInterface.OnClickListener() {
+                        .setSingleChoiceItems(timeArray, 0, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                switch (which) {
-                                    case 0:
-                                        tvTime.setText("9:00AM-11:00AM");
-                                        time = "9:00AM-11:00AM";
-                                        break;
-                                    case 1:
-                                        tvTime.setText("11:00AM-1:00PM");
-                                        time = "11:00AM-1:00PM";
-                                        break;
-                                    case 2:
-                                        tvTime.setText("1:00PM OR Later");
-                                        time = "1:00PM OR Later";
-                                        break;
-                                }
+                                tvTime.setText("Time is "+timeArray[which]);
+                                time = timeArray[which];
                                 dialog.cancel();
                             }
                         }).create()

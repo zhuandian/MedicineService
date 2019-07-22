@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.zhuandian.medicineserver.R;
+import com.zhuandian.medicineserver.clock.AlarmManagerUtil;
 import com.zhuandian.medicineserver.entity.DbEntity;
 import com.zhuandian.medicineserver.entity.ItemEntity;
 
@@ -58,17 +59,21 @@ public class MyListView extends LinearLayout {
 
 
         for (DbEntity dbEntity : dbEntityList) {
-            if (dbEntity.getTime().equals("9:00AM-11:00AM")) {
+
+            AlarmManagerUtil.setAlarm(context, 0, Integer.parseInt(dbEntity.getTime()),
+                    00, 0, 0, "Medication time", 2);
+
+            if (Integer.parseInt(dbEntity.getTime()) < 11) {
                 ItemEntity.SubItem subItem = new ItemEntity.SubItem();
                 subItem.setTitle(dbEntity.getTitle());
                 subItem.setContent(dbEntity.getCount());
                 subItemList1.add(subItem);
-            } else if (dbEntity.getTime().equals("11:00AM-1:00PM")) {
+            } else if (Integer.parseInt(dbEntity.getTime()) > 11 && Integer.parseInt(dbEntity.getTime()) < 13) {
                 ItemEntity.SubItem subItem = new ItemEntity.SubItem();
                 subItem.setTitle(dbEntity.getTitle());
                 subItem.setContent(dbEntity.getCount());
                 subItemList2.add(subItem);
-            } else if (dbEntity.getTime().equals("1:00PM OR Later")) {
+            } else if (Integer.parseInt(dbEntity.getTime()) > 13) {
                 ItemEntity.SubItem subItem = new ItemEntity.SubItem();
                 subItem.setTitle(dbEntity.getTitle());
                 subItem.setContent(dbEntity.getCount());

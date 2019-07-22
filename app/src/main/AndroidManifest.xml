@@ -2,8 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.zhuandian.medicineserver">
 
+    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
 
     <application
         android:allowBackup="true"
@@ -12,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddMedicineActivity"></activity>
+        <activity android:name=".AlarmActivity"></activity>
+        <activity android:name=".AddMedicineActivity" />
         <activity
             android:name=".datepicker.MainActivity"
             android:label="@string/app_name">
@@ -22,6 +25,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service android:name=".service.LongRunningService"/>
+
+        <receiver android:name=".clock.LoongggAlarmReceiver">
+            <intent-filter>
+                <action android:name="com.loonggg.alarm.clock"/>
+            </intent-filter>
+        </receiver>
+        <activity
+            android:name=".clock.ClockAlarmActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            ></activity>
     </application>
 
 </manifest>

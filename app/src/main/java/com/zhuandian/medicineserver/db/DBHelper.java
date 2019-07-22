@@ -23,13 +23,13 @@ public class DBHelper extends SQLiteOpenHelper {
                 "count varchar(20))");
         //添加一条测试数据
         db.execSQL("insert into medicine values(null,?,?,?,?)"
-                ,new Object[]{"2019.7.21","9:00AM-11:00AM","标题","2"});
+                ,new Object[]{"2019.7.21","9","标题","2"});
 
         db.execSQL("insert into medicine values(null,?,?,?,?)"
-                ,new Object[]{"2019.7.22","11:00AM-1:00PM","标题","2"});
+                ,new Object[]{"2019.7.22","12","标题","2"});
 
         db.execSQL("insert into medicine values(null,?,?,?,?)"
-                ,new Object[]{"2019.7.24","1:00PM OR Later","标题","2"});
+                ,new Object[]{"2019.7.24","13","标题","2"});
     }
 
 
