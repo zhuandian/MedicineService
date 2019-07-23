@@ -56,7 +56,7 @@ public class AddMedicineActivity extends AppCompatActivity {
 
         final String[] timeArray = new String[24];
         for (int i = 0; i < 24; i++) {
-            timeArray[i]= i+"";
+            timeArray[i] = i + "";
         }
         name = (EditText) findViewById(R.id.et_name);
         count = (EditText) findViewById(R.id.et_count);
@@ -71,7 +71,7 @@ public class AddMedicineActivity extends AppCompatActivity {
                         .setSingleChoiceItems(timeArray, 0, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                tvTime.setText("Time is "+timeArray[which]);
+                                tvTime.setText("Time is " + timeArray[which]);
                                 time = timeArray[which];
                                 dialog.cancel();
                             }
@@ -140,7 +140,7 @@ public class AddMedicineActivity extends AppCompatActivity {
         String path = Environment.getExternalStorageDirectory().getPath() + File.separator + "config.txt";
         String content = "";
         File file = new File(path);
-        if (file.getName().endsWith(".txt")) {
+        if (file.exists() && file.getName().endsWith(".txt")) {
             try {
                 InputStream in = new FileInputStream(file);
                 if (in != null) {
